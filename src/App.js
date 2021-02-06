@@ -8,7 +8,8 @@ class App extends Component {
     persons: [
       {name : "Virat Kohli", age:32},
       {name : "Steve Smith", age:31}
-    ]
+    ],
+    showPersons: false
   }   
 
   toggleHandler = (newName) => {
@@ -18,6 +19,13 @@ class App extends Component {
         {name : newName, age:32},
         {name : "Steve Smith", age:31}
       ]
+    });
+  }
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons:!doesShow
     });
   }
 
@@ -35,19 +43,24 @@ class App extends Component {
     return (
       <div className="App">        
         <h1 className="App-title">Welcome to React !!!</h1>
-        <button onClick={this.toggleHandler}>Toogggleee</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          click={() => this.toggleHandler('Viiirrrrat')}
-        >India</Person>
-        <br />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.toggleHandler.bind(this,"Viraaaaat")}
-          changed={this.onChangeHandler}
-        >Australia</Person>
+        <button onClick={this.togglePersonsHandler}>Toogggleee</button>
+        { this.state.showPersons === true ?
+          <div>
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}
+              click={() => this.toggleHandler('Viiirrrrat')}
+            >India</Person>
+            <br />
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click={this.toggleHandler.bind(this,"Viraaaaat")}
+              changed={this.onChangeHandler}
+            >Australia</Person>
+          </div>  : null
+        }
+        
       </div>
     );
   }
