@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, {StyleRoot} from 'radium';
 import './App.css';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
@@ -78,7 +79,11 @@ class App extends Component {
       font:'inherit',
       border:'5 px solid blue',
       padding:'20 px',
-      cursor:'pointer'
+      cursor:'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -95,7 +100,13 @@ class App extends Component {
         })}
         </div>
       );
+
       style.backgroundColor='green';
+      style[':hover'] = {
+        backgroundColor: 'red',
+        color: 'white'
+      }
+
     }
 
     let classes = ['red','bold'].join(' ');
@@ -118,6 +129,7 @@ class App extends Component {
     });
 
     return (
+      <StyleRoot>
       <div className="App">        
         <h1 className="App-title">Welcome to React !!!</h1>
         <p className={classes}>This seems to be working</p>
@@ -132,8 +144,9 @@ class App extends Component {
         <Validation inputLength={this.state.userInput.length} />  
         {charList}
       </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
