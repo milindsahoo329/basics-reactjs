@@ -73,7 +73,8 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundStyle:'red',
+      backgroundColor:'grey',
+      color:'white',
       font:'inherit',
       border:'5 px solid blue',
       padding:'20 px',
@@ -94,7 +95,20 @@ class App extends Component {
         })}
         </div>
       );
+      style.backgroundColor='green';
     }
+
+    let classes = ['red','bold'].join(' ');
+
+    let classesList = [];
+
+    if(this.state.persons.length == 1){
+      classesList.push['red'];
+    } else {
+      classesList.push['bold'];
+    }
+
+
 
     const charList = this.state.userInput.split('').map((ch,index) => {
       return <Char 
@@ -106,6 +120,8 @@ class App extends Component {
     return (
       <div className="App">        
         <h1 className="App-title">Welcome to React !!!</h1>
+        <p className={classes}>This seems to be working</p>
+        <p className={classesList.join(' ')}>This is the conditional paragraph</p>
         <button 
           style={style}
           onClick={this.togglePersonsHandler}>Toogggleee</button>
